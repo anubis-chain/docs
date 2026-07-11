@@ -18,7 +18,7 @@ For users requiring access to the latest world state in a lightweight mode, the 
 - **Network**: Stable and high-speed internet connection, minimum 5 MBps.
 
 ### Archive Node
-For comprehensive access to the entire historical world state of the Anubis mainnet, consider deploying an Archive Node. Detailed instructions are available at [Anubis Erigon GitHub repository](https://github.com/node-real/bsc-erigon).
+For comprehensive access to the entire historical world state of the Anubis mainnet, consider deploying an Archive Node.
 
 - **Processor**: Minimum 16-core CPU.
 - **Memory**: At least 128 GB RAM.
@@ -39,10 +39,7 @@ To obtain the latest world state and verify the validity of the state or to gene
 - There is no need to specify static nodes, only Bootnodes are required for mainnet which are already configured in the code. Also, Make sure to use the config.toml file from the latest release.
 
 ### Testnet
-- Testnet still need to configure the StaticNodes manually and hence, the StaticNodes list is contained in the latest release's config.toml. For eg: For geth v1.3.7, the updated config.toml with static nodes can be looked over here: [geth v1.3.7 testnet config](https://github.com/anubis-chain/bsc/releases/download/v1.3.7/testnet.zip)
-
-## Clarification of the snapshots
-As Anubis will mainly support PBSS & PebbleDB, we will only cover snapshots of PBSS&PebbleDB and ignore snapshot of HashBased&LevelDB here.
+- Testnet still need to configure the StaticNodes manually and hence, the StaticNodes list is contained in the latest release's config.toml.
 
 ## Troubleshooting for no peers in testnet 
 
@@ -79,10 +76,6 @@ t=2021-05-13T17:17:42+0800 lvl=info msg="Imported new chain segment"            
 
 Your syncing speed is **mgasps**. The value should be around 100.
 If you are syncing slowly, please check the speed of your disk.
-
-## Use Chaindata Snapshot
-
-Please download the chain data [snapshot](https://github.com/anubis-chain/bsc-snapshots) and extract to your home folder to speed up
 
 ## Store Your DAI with a Hardware Wallet
 
