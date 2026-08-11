@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../../assets/anubis.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
     
@@ -33,7 +33,7 @@
     
 
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2691,8 +2691,8 @@
 <div><h1 id="how-to-run-a-fullnode-using-anubis-docker-image">How to Run A Fullnode Using Anubis Docker Image<a class="headerlink" href="#how-to-run-a-fullnode-using-anubis-docker-image" title="Link to this section">¶</a></h1>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Link to this section">¶</a></h2>
 <ul>
-<li>Docker image: <a href="https://github.com/anubis-chain/bsc/pkgs/container/bsc">https://github.com/anubis-chain/bsc/pkgs/container/bsc</a></li>
-<li>Dockerfile: <a href="https://github.com/anubis-chain/bsc/blob/master/Dockerfile">https://github.com/anubis-chain/bsc/blob/master/Dockerfile</a></li>
+<li>Docker image: <a href="https://github.com/anubis-chain/anubis/pkgs/container/anubis">https://github.com/anubis-chain/anubis/pkgs/container/anubis</a></li>
+<li>Dockerfile: <a href="https://github.com/anubis-chain/anubis/blob/master/Dockerfile">https://github.com/anubis-chain/anubis/blob/master/Dockerfile</a></li>
 </ul>
 <h2 id="supported-platforms">Supported Platforms<a class="headerlink" href="#supported-platforms" title="Link to this section">¶</a></h2>
 <p>We support running a Anubis docker image on <strong>Mac OS X</strong>, <strong>Linux</strong>, and <strong>Windows</strong>.</p>
@@ -2712,18 +2712,18 @@ Add user “ubuntu” to group docker so the user has privileges to run docker c
 </code></pre></div>
 <h3 id="pull-anubis-node-image">Pull Anubis Node Image<a class="headerlink" href="#pull-anubis-node-image" title="Link to this section">¶</a></h3>
 <ul>
-<li>Get latest version: <a href="https://github.com/anubis-chain/bsc/pkgs/container/bsc">https://github.com/anubis-chain/bsc/pkgs/container/bsc</a>
-<div class="highlight"><pre><span></span><code>docker pull ghcr.io/bnb-chain/bsc:latest
+<li>Get latest version: <a href="https://github.com/anubis-chain/anubis/pkgs/container/anubis">https://github.com/anubis-chain/anubis/pkgs/container/anubis</a>
+<div class="highlight"><pre><span></span><code>docker pull ghcr.io/anubis-chain/anubis:latest
 </code></pre></div></li>
 </ul>
 <h3 id="download-anubis-node-config-files">Download Anubis Node Config Files<a class="headerlink" href="#download-anubis-node-config-files" title="Link to this section">¶</a></h3>
 <p>Download <strong>genesis.json</strong> and <strong>config.toml</strong> by:</p>
 <p>Mainnet
-</p><div class="highlight"><pre><span></span><code>wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/bnb-chain/bsc/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>mainnet<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
+</p><div class="highlight"><pre><span></span><code>wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/anubis-chain/anubis/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>mainnet<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
 unzip<span class="w"> </span>mainnet.zip
 </code></pre></div>
 Testnet
-<div class="highlight"><pre><span></span><code>wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/bnb-chain/bsc/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>testnet<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
+<div class="highlight"><pre><span></span><code>wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/anubis-chain/anubis/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>testnet<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
 unzip<span class="w"> </span>testnet.zip
 </code></pre></div>
 <h3 id="running-docker-container">Running Docker Container<a class="headerlink" href="#running-docker-container" title="Link to this section">¶</a></h3>
@@ -2731,7 +2731,7 @@ unzip<span class="w"> </span>testnet.zip
 <li>Dockers Variables and Config file Location</li>
 </ol>
 <p>Important <strong>Environment Variables</strong> to note: 
-</p><div class="highlight"><pre><span></span><code>$ANUBIS_HOME = /bsc
+</p><div class="highlight"><pre><span></span><code>$ANUBIS_HOME = /anubis
 $DATA_DIR = /data
 </code></pre></div>
 File location:
@@ -2757,26 +2757,26 @@ File location:
 <tr>
 <td>Blockchain data</td>
 <td>data/node</td>
-<td>/bsc/node</td>
+<td>/anubis/node</td>
 </tr>
 <tr>
 <td>Config files</td>
 <td>config</td>
-<td>/bsc/config</td>
+<td>/anubis/config</td>
 </tr>
 </tbody>
 </table>
 <ol>
 <li>
 <p>Download data on local host
-Download latest chaindata snapshot from <a href="https://github.com/anubis-chain/bsc-snapshots">here</a>. Follow the guide to structure your files.</p>
+Download latest chaindata snapshot from <a href="https://github.com/anubis-chain/anubis-snapshots">here</a>. Follow the guide to structure your files.</p>
 </li>
 <li>
 <p>Start container</p>
 </li>
 </ol>
 <p>You can also use <em>ETHEREUM OPTIONS</em> to overwrite settings in the configuration file:
-</p><div class="highlight"><pre><span></span><code>docker run -v $(pwd)/config:/bsc/config -v $(pwd)/data/node:/bsc/node -p 8575:8575 --rm --name bsc -it ghcr.io/bnb-chain/bsc:1.1.18_hr --http.addr 0.0.0.0 --http.port 8575 --http.vhosts '*' --verbosity 5 --history.logs 576000
+</p><div class="highlight"><pre><span></span><code>docker run -v $(pwd)/config:/anubis/config -v $(pwd)/data/node:/anubis/node -p 8575:8575 --rm --name anubis -it ghcr.io/anubis-chain/anubis:1.0.0_hr --http.addr 0.0.0.0 --http.port 8575 --http.vhosts '*' --verbosity 5 --history.logs 576000
 </code></pre></div>
 <blockquote>
 <p><strong>Note</strong>: Consider adding <code>--history.logs.disable</code> for better performance, but <code>eth_getLogs</code> will be slower.</p>
@@ -2793,7 +2793,7 @@ Download latest chaindata snapshot from <a href="https://github.com/anubis-chain
 </ol>
 <h3 id="how-to-access-the-container">How to access the container<a class="headerlink" href="#how-to-access-the-container" title="Link to this section">¶</a></h3>
 <p>Execute bash (shell/terminal) on the container named bsc:</p>
-<p></p><div class="highlight"><pre><span></span><code>docker exec -it bsc bash
+<p></p><div class="highlight"><pre><span></span><code>docker exec -it anubis bash
 </code></pre></div>
 Once logged in you can perform regular tasks you would do on a node without docker.
 <h3 id="how-to-check-node-running-status">How to Check Node Running Status<a class="headerlink" href="#how-to-check-node-running-status" title="Link to this section">¶</a></h3>
@@ -2805,7 +2805,7 @@ Once started, run:
 <div class="highlight"><pre><span></span><code>&gt;eth.syncing
 </code></pre></div>
 <h4 id="check-geth-logs">Check Geth Logs<a class="headerlink" href="#check-geth-logs" title="Link to this section">¶</a></h4>
-<div class="highlight"><pre><span></span><code>tail -f node/bsc.log
+<div class="highlight"><pre><span></span><code>tail -f node/anubis.log
 </code></pre></div></div>
 
 
@@ -2827,7 +2827,7 @@ Once started, run:
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 6, 2026 10:04:31 UTC">April 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 11, 2026 08:39:59 UTC">August 11, 2026</span>
   </span>
 
     
@@ -2999,7 +2999,7 @@ Once started, run:
     
     
 
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../../assets/js/mathjax.js"></script>
       

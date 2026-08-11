@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../../assets/anubis.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
     
@@ -33,7 +33,7 @@
     
 
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2697,12 +2697,10 @@
 <li>execute and validate newly received blocks.</li>
 <li>verify the states of every account, as it has the full world state.</li>
 </ul>
-<p>Currently, there are 3 different clients to run a Anubis full:</p>
+<p>Currently, there are only 1 client to run a Anubis full:</p>
 <ul>
-<li>Geth: <a href="https://github.com/anubis-chain/bsc">https://github.com/anubis-chain/bsc</a></li>
-<li>Erigon: <a href="https://github.com/node-real/bsc-erigon">https://github.com/node-real/bsc-erigon</a></li>
+<li>Geth: <a href="https://github.com/anubis-chain/anubis">https://github.com/anubis-chain/anubis</a></li>
 </ul>
-<p>Only Geth will be covered in this page, as Erigon is mainly to support archive mode, pls refer <a href="../archive_node/">archive_node.md</a> for its usage.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you want high performance and care little about state consistency, you can run a fast node, which is a full node with the flag <code>--tries-verify-mode none</code> set.
@@ -2730,14 +2728,14 @@ Check <a href="../fast_node/">here</a> for full details on running a fast node.
 <h4 id="aby-snapshot">a.By Snapshot<a class="headerlink" href="#aby-snapshot" title="Link to this section">¶</a></h4>
 <ol>
 <li>
-<p>Download the pre-build binaries from the <a href="https://github.com/anubis-chain/bsc/releases/latest">release page</a> or follow the instructions below</p>
+<p>Download the pre-build binaries from the <a href="https://github.com/anubis-chain/anubis/releases/latest">release page</a> or follow the instructions below</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Linux</span>
-wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/bnb-chain/bsc/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>geth_linux<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
+wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/anubis-chain/anubis/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>geth_linux<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
 mv<span class="w"> </span>geth_linux<span class="w"> </span>geth
 chmod<span class="w"> </span>-v<span class="w"> </span>u+x<span class="w"> </span>geth
 
 <span class="c1"># MacOS</span>
-wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/bnb-chain/bsc/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>geth_mac<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
+wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/anubis-chain/anubis/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>geth_mac<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
 mv<span class="w"> </span>geth_mac<span class="w"> </span>geth
 chmod<span class="w"> </span>-v<span class="w"> </span>u+x<span class="w"> </span>geth
 </code></pre></div>
@@ -2746,17 +2744,17 @@ chmod<span class="w"> </span>-v<span class="w"> </span>u+x<span class="w"> </spa
 <p>Download the config files</p>
 <p>Download <strong>genesis.json</strong> and <strong>config.toml</strong> by:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># mainnet</span>
-wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/bnb-chain/bsc/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>mainnet<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
+wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/anubis-chain/anubis/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>mainnet<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
 unzip<span class="w"> </span>mainnet.zip
 
 <span class="c1"># testnet</span>
-wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/bnb-chain/bsc/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>testnet<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
+wget<span class="w">   </span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/anubis-chain/anubis/releases/latest<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>browser_<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>testnet<span class="w"> </span><span class="p">|</span>cut<span class="w"> </span>-d<span class="se">\"</span><span class="w"> </span>-f4<span class="k">)</span>
 unzip<span class="w"> </span>testnet.zip
 </code></pre></div>
 </li>
 <li>
 <p>Download snapshot
-    Download latest chaindata snapshot from <a href="https://github.com/anubis-chain/bsc-snapshots">here</a>. Follow the guide to structure your files.</p>
+    Download latest chaindata snapshot from <a href="https://github.com/anubis-chain/anubis-snapshots">here</a>. Follow the guide to structure your files.</p>
 </li>
 <li>
 <p>Start a full node
@@ -2767,7 +2765,7 @@ unzip<span class="w"> </span>testnet.zip
 </li>
 <li>
 <p>Monitor node status</p>
-<p>You can monitor the log from <strong>./&lt;datadir&gt;/bsc.log</strong> by default. When your node has started syncing, you should be able to see the following output:</p>
+<p>You can monitor the log from <strong>./&lt;datadir&gt;/anubis.log</strong> by default. When your node has started syncing, you should be able to see the following output:</p>
 <div class="highlight"><pre><span></span><code>t=2022-09-08T13:00:27+0000 lvl=info msg="Imported new chain segment"             blocks=1    txs=177   mgas=17.317   elapsed=31.131ms    mgasps=556.259  number=21,153,429 hash=0x42e6b54ba7106387f0650defc62c9ace3160b427702dab7bd1c5abb83a32d8db dirty="0.00 B"
 t=2022-09-08T13:00:29+0000 lvl=info msg="Imported new chain segment"             blocks=1    txs=251   mgas=39.638   elapsed=68.827ms    mgasps=575.900  number=21,153,430 hash=0xa3397b273b31b013e43487689782f20c03f47525b4cd4107c1715af45a88796e dirty="0.00 B"
 t=2022-09-08T13:00:33+0000 lvl=info msg="Imported new chain segment"             blocks=1    txs=197   mgas=19.364   elapsed=34.663ms    mgasps=558.632  number=21,153,431 hash=0x0c7872b698f28cb5c36a8a3e1e315b1d31bda6109b15467a9735a12380e2ad14 dirty="0.00 B"
@@ -2785,7 +2783,7 @@ t=2022-09-08T13:00:33+0000 lvl=info msg="Imported new chain segment"            
 <h3 id="23sync-mode">2.3.Sync Mode<a class="headerlink" href="#23sync-mode" title="Link to this section">¶</a></h3>
 <p>There are two sync modes for running a full node: <strong>snap</strong> and <strong>full</strong> which can be specified by flag <strong>–syncmode</strong>.</p>
 <p>The <strong>snap</strong> sync mode is used for initial sync, which will download the latest states rather than execute the blocks from the genesis. When the initial sync is done, it will switch to full sync automatically.</p>
-<p>The <strong>full</strong> sync mode can also be used to do initial sync, which will execute all the blocks since genesis. But it is <strong>not recommended</strong>, since the amount of historical data is too large. Instead, you can download a snapshot from the <a href="https://github.com/anubis-chain/bsc-snapshots">official repo</a> and start full sync from the snapshot.</p>
+<p>The <strong>full</strong> sync mode can also be used to do initial sync, which will execute all the blocks since genesis. But it is <strong>not recommended</strong>, since the amount of historical data is too large. Instead, you can download a snapshot from the <a href="https://github.com/anubis-chain/anubis-snapshots">official repo</a> and start full sync from the snapshot.</p>
 <p>If the flag <strong>–syncmode</strong> is not provided, the default sync mode will depend on the state of the data folder. It will be <strong>snap</strong> mode if you sync from genesis or <strong>full</strong> mode if you start from a snapshot.</p>
 <h3 id="24others">2.4.Others<a class="headerlink" href="#24others" title="Link to this section">¶</a></h3>
 <h4 id="alocal-private-network">a.Local Private Network<a class="headerlink" href="#alocal-private-network" title="Link to this section">¶</a></h4>
@@ -2814,7 +2812,7 @@ t=2022-09-08T13:00:33+0000 lvl=info msg="Imported new chain segment"            
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 6, 2026 10:04:31 UTC">April 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 11, 2026 08:39:59 UTC">August 11, 2026</span>
   </span>
 
     
@@ -2986,7 +2984,7 @@ t=2022-09-08T13:00:33+0000 lvl=info msg="Imported new chain segment"            
     
     
 
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../../assets/js/mathjax.js"></script>
       
