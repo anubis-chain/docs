@@ -5,8 +5,8 @@ title: Run Anubis Nodes using Docker - Anubis Develop
 # How to Run A Fullnode Using Anubis Docker Image
 
 ## Resources
-* Docker image: https://github.com/anubis-chain/bsc/pkgs/container/bsc
-* Dockerfile: https://github.com/anubis-chain/bsc/blob/master/Dockerfile
+* Docker image: https://github.com/anubis-chain/anubis/pkgs/container/anubis
+* Dockerfile: https://github.com/anubis-chain/anubis/blob/master/Dockerfile
 
 ## Supported Platforms
 
@@ -32,9 +32,9 @@ usermod -aG docker ubuntu
 
 ### Pull Anubis Node Image
 
-* Get latest version: https://github.com/anubis-chain/bsc/pkgs/container/bsc
+* Get latest version: https://github.com/anubis-chain/anubis/pkgs/container/anubis
 ```
-docker pull ghcr.io/bnb-chain/bsc:latest
+docker pull ghcr.io/anubis-chain/anubis:latest
 ```
 
 ### Download Anubis Node Config Files
@@ -43,12 +43,12 @@ Download **genesis.json** and **config.toml** by:
 
 Mainnet
 ```bash
-wget   $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
+wget   $(curl -s https://api.github.com/repos/anubis-chain/anubis/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
 unzip mainnet.zip
 ```
 Testnet
 ```bash
-wget   $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep testnet |cut -d\" -f4)
+wget   $(curl -s https://api.github.com/repos/anubis-chain/anubis/releases/latest |grep browser_ |grep testnet |cut -d\" -f4)
 unzip testnet.zip
 ```
 
@@ -57,7 +57,7 @@ unzip testnet.zip
 
 Important **Environment Variables** to note: 
 ```
-$ANUBIS_HOME = /bsc
+$ANUBIS_HOME = /anubis
 $DATA_DIR = /data
 ```
 File location:
@@ -71,17 +71,17 @@ Essentially we need to bind mount two directories:
 
 |    Mount        | Local  | Docker                     |
 | ----------------- | ------------- | -------------------------------------- |
-| Blockchain data | data/node | /bsc/node    |
-| Config files | config  | /bsc/config  |
+| Blockchain data | data/node | /anubis/node    |
+| Config files | config  | /anubis/config  |
 
 3. Download data on local host
-Download latest chaindata snapshot from [here](https://github.com/anubis-chain/bsc-snapshots). Follow the guide to structure your files.
+Download latest chaindata snapshot from [here](https://github.com/anubis-chain/anubis-snapshots). Follow the guide to structure your files.
 
 4. Start container
 
 You can also use *ETHEREUM OPTIONS* to overwrite settings in the configuration file:
 ```
-docker run -v $(pwd)/config:/bsc/config -v $(pwd)/data/node:/bsc/node -p 8575:8575 --rm --name bsc -it ghcr.io/bnb-chain/bsc:1.1.18_hr --http.addr 0.0.0.0 --http.port 8575 --http.vhosts '*' --verbosity 5 --history.logs 576000
+docker run -v $(pwd)/config:/anubis/config -v $(pwd)/data/node:/anubis/node -p 8575:8575 --rm --name anubis -it ghcr.io/anubis-chain/anubis:1.0.0_hr --http.addr 0.0.0.0 --http.port 8575 --http.vhosts '*' --verbosity 5 --history.logs 576000
 ```
 
 > **Note**: Consider adding `--history.logs.disable` for better performance, but `eth_getLogs` will be slower.
@@ -100,7 +100,7 @@ geth attach http://localhost:8575
 Execute bash (shell/terminal) on the container named bsc:
 
 ```
-docker exec -it bsc bash
+docker exec -it anubis bash
 ```
 Once logged in you can perform regular tasks you would do on a node without docker.
 
@@ -118,5 +118,5 @@ Once started, run:
 ```
 #### Check Geth Logs
 ```
-tail -f node/bsc.log
+tail -f node/anubis.log
 ```

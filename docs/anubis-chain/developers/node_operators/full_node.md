@@ -11,12 +11,9 @@ Full node stores the full world state on disk and is capable of:
 * execute and validate newly received blocks.
 * verify the states of every account, as it has the full world state.
 
-Currently, there are 3 different clients to run a Anubis full:
+Currently, there are only 1 client to run a Anubis full:
 
-* Geth: https://github.com/anubis-chain/bsc
-* Erigon: https://github.com/node-real/bsc-erigon
-
-Only Geth will be covered in this page, as Erigon is mainly to support archive mode, pls refer [archive_node.md](./archive_node.md) for its usage.
+* Geth: https://github.com/anubis-chain/anubis
 
 !!! tip
     If you want high performance and care little about state consistency, you can run a fast node, which is a full node with the flag `--tries-verify-mode none` set.
@@ -42,16 +39,16 @@ There are 2 approaches to setup a Anubis full node from scratch:
 
 #### a.By Snapshot
 
-1. Download the pre-build binaries from the [release page](https://github.com/anubis-chain/bsc/releases/latest) or follow the instructions below
+1. Download the pre-build binaries from the [release page](https://github.com/anubis-chain/anubis/releases/latest) or follow the instructions below
 
     ```bash
     # Linux
-    wget   $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep geth_linux |cut -d\" -f4)
+    wget   $(curl -s https://api.github.com/repos/anubis-chain/anubis/releases/latest |grep browser_ |grep geth_linux |cut -d\" -f4)
     mv geth_linux geth
     chmod -v u+x geth
     
     # MacOS
-    wget   $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep geth_mac |cut -d\" -f4)
+    wget   $(curl -s https://api.github.com/repos/anubis-chain/anubis/releases/latest |grep browser_ |grep geth_mac |cut -d\" -f4)
     mv geth_mac geth
     chmod -v u+x geth
     ```
@@ -62,16 +59,16 @@ There are 2 approaches to setup a Anubis full node from scratch:
     
     ```bash
     # mainnet
-    wget   $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
+    wget   $(curl -s https://api.github.com/repos/anubis-chain/anubis/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
     unzip mainnet.zip
     
     # testnet
-    wget   $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep testnet |cut -d\" -f4)
+    wget   $(curl -s https://api.github.com/repos/anubis-chain/anubis/releases/latest |grep browser_ |grep testnet |cut -d\" -f4)
     unzip testnet.zip
     ```
 
 3. Download snapshot
-    Download latest chaindata snapshot from [here](https://github.com/anubis-chain/bsc-snapshots). Follow the guide to structure your files.
+    Download latest chaindata snapshot from [here](https://github.com/anubis-chain/anubis-snapshots). Follow the guide to structure your files.
 
 4. Start a full node
     ```
@@ -82,7 +79,7 @@ There are 2 approaches to setup a Anubis full node from scratch:
 
 5. Monitor node status
 
-    You can monitor the log from **./<datadir\>/bsc.log** by default. When your node has started syncing, you should be able to see the following output:
+    You can monitor the log from **./<datadir\>/anubis.log** by default. When your node has started syncing, you should be able to see the following output:
     
     ```
     t=2022-09-08T13:00:27+0000 lvl=info msg="Imported new chain segment"             blocks=1    txs=177   mgas=17.317   elapsed=31.131ms    mgasps=556.259  number=21,153,429 hash=0x42e6b54ba7106387f0650defc62c9ace3160b427702dab7bd1c5abb83a32d8db dirty="0.00 B"
@@ -104,7 +101,7 @@ There are two sync modes for running a full node: **snap** and **full** which ca
 
 The **snap** sync mode is used for initial sync, which will download the latest states rather than execute the blocks from the genesis. When the initial sync is done, it will switch to full sync automatically.
 
-The **full** sync mode can also be used to do initial sync, which will execute all the blocks since genesis. But it is **not recommended**, since the amount of historical data is too large. Instead, you can download a snapshot from the [official repo](https://github.com/anubis-chain/bsc-snapshots) and start full sync from the snapshot.
+The **full** sync mode can also be used to do initial sync, which will execute all the blocks since genesis. But it is **not recommended**, since the amount of historical data is too large. Instead, you can download a snapshot from the [official repo](https://github.com/anubis-chain/anubis-snapshots) and start full sync from the snapshot.
 
 If the flag **--syncmode** is not provided, the default sync mode will depend on the state of the data folder. It will be **snap** mode if you sync from genesis or **full** mode if you start from a snapshot.
 
